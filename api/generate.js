@@ -1,6 +1,12 @@
 export default async function handler(req, res) {
   try {
-    const { prompt } = req.body;
+    // 🔥 FIX DI SINI
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const { prompt } = body || {};
+
+    if (!prompt) {
+      return res.status(400).json({ error: "No prompt provided" });
+    }
 
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -20,8 +26,16 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
+    if (!response.ok) {
+      return res.status(500).json({ error: "Groq API error", detail: data });
+    }
+
     res.status(200).json(data);
+
   } catch (error) {
-    res.status(500).json({ error: "Server error", detail: error.message });
+    res.status(500).json({
+      error: "Server error",
+      detail: error.message
+    });
   }
 }
