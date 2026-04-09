@@ -1,63 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="FridgeChef AI — Get instant, personalized recipes based on ingredients you already have. Reduce food waste, discover new meals, and cook smarter with AI." />
-  <meta name="keywords" content="AI recipes, fridge ingredients, meal ideas, cooking assistant, reduce food waste" />
+    content="FridgeChef AI — Get instant, personalized recipes based on ingredients you already have." />
   <title>FridgeChef AI — Cook Smarter from Your Fridge</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Syne:wght@400;600;700;800&display=swap"
     rel="stylesheet" />
   <style>
-    * {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
-      box-sizing: border-box
+      box-sizing: border-box;
     }
 
     :root {
-      --cream: #FDFAF5;
-      --cream2: #F5EFE4;
-      --dark: #1C1A17;
-      --dark2: #2E2B25;
-      --olive: #5C6B2E;
-      --olive2: #7A8B40;
-      --olive3: #DCE8B4;
-      --olive4: #EEF4D6;
-      --amber: #C47B2B;
-      --amber2: #F0A84E;
+      --bg: #F7F3EC;
+      --bg2: #EFE9DF;
+      --card: #FFFCF7;
+      --card2: #F5F0E8;
+      --border: #DDD5C3;
+      --border2: #E8E1D4;
+      --dark: #1A1812;
+      --dark2: #2D2A22;
+      --text: #1A1812;
+      --text2: #4A4640;
+      --muted: #8A8278;
+      --light: #B8B0A4;
+      --green: #3D6B2C;
+      --green2: #5A9A3E;
+      --green3: #C8E6B8;
+      --green4: #EAF5E0;
+      --amber: #B86B1A;
+      --amber2: #E8943A;
       --amber3: #FFF0D4;
-      --red: #A83228;
-      --text-muted: #7A7165;
-      --text-light: #B5AFA5;
-      --card-bg: #FFFDF9;
-      --border: #E8E0D0;
-      font-family: 'DM Sans', sans-serif;
+      --red: #9B2828;
+      --blue: #2E4A9B;
+      --tag-diff-bg: #EEF0FF;
+      --tag-diff-c: #3B4FCC;
+      --tag-cal-bg: #FFF0F2;
+      --tag-cal-c: #C03050;
+      --header-bg: rgba(247, 243, 236, 0.94);
+      --shadow: rgba(26, 24, 18, 0.07);
+      --shadow2: rgba(26, 24, 18, 0.12);
+      --spinner-border: rgba(255, 255, 255, 0.3);
+      --tip-border: #E8D8AA;
+      --tip-text: #7A5215;
+    }
+
+    [data-theme="dark"] {
+      --bg: #14120E;
+      --bg2: #1E1B14;
+      --card: #1E1B14;
+      --card2: #26221A;
+      --border: #3A3528;
+      --border2: #302C22;
+      --dark: #F2EDE3;
+      --dark2: #D8D0C0;
+      --text: #F2EDE3;
+      --text2: #C0B8A8;
+      --muted: #8A8278;
+      --light: #5A5248;
+      --green: #7DC85A;
+      --green2: #96D870;
+      --green3: #1C3A12;
+      --green4: #142810;
+      --amber: #E8943A;
+      --amber2: #F5B065;
+      --amber3: #2A1E08;
+      --red: #E05555;
+      --blue: #7A96E8;
+      --tag-diff-bg: #1A1F3A;
+      --tag-diff-c: #8A9FE8;
+      --tag-cal-bg: #2A1218;
+      --tag-cal-c: #E07090;
+      --header-bg: rgba(20, 18, 14, 0.96);
+      --shadow: rgba(0, 0, 0, 0.3);
+      --shadow2: rgba(0, 0, 0, 0.4);
+      --spinner-border: rgba(255, 255, 255, 0.2);
+      --tip-border: #3A2808;
+      --tip-text: #D8A860;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: var(--cream);
-      color: var(--dark);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
       min-height: 100vh;
-      overflow-x: hidden
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
     }
 
-    /* HEADER */
+    /* ─── HEADER ─── */
     header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(253, 250, 245, 0.92);
-      backdrop-filter: blur(12px);
+      z-index: 200;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 0 5vw;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      transition: background 0.3s, border-color 0.3s;
     }
 
     .logo {
@@ -65,54 +121,141 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--dark)
+      color: var(--text);
     }
 
     .logo-icon {
-      width: 34px;
-      height: 34px;
-      background: var(--olive);
-      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      background: var(--green);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px
+      font-size: 18px;
+      transition: background 0.3s;
     }
 
     .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: -0.3px
+      letter-spacing: -0.3px;
+      color: var(--text);
     }
 
-    .logo-text span {
-      color: var(--olive)
+    .logo-text em {
+      font-style: normal;
+      color: var(--green);
     }
 
-    nav {
+    .header-controls {
       display: flex;
       align-items: center;
-      gap: 8px
+      gap: 10px;
+    }
+
+    /* Language Selector */
+    .lang-select-wrapper {
+      position: relative;
+    }
+
+    .lang-select {
+      appearance: none;
+      background: var(--card2);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 28px 6px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Syne', sans-serif;
+      color: var(--text2);
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .lang-select:hover {
+      border-color: var(--green);
+    }
+
+    .lang-select-wrapper::after {
+      content: '▾';
+      position: absolute;
+      right: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Dark Mode Toggle */
+    .theme-toggle {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      cursor: pointer;
+    }
+
+    .theme-toggle input {
+      display: none;
+    }
+
+    .toggle-track {
+      width: 100%;
+      height: 100%;
+      background: var(--card2);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .theme-toggle input:checked~.toggle-track {
+      background: var(--dark2);
+      border-color: var(--border);
+    }
+
+    .toggle-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      transition: transform 0.3s cubic-bezier(.34, 1.56, .64, 1), background 0.3s;
+      transform: translateX(0);
+    }
+
+    .theme-toggle input:checked~.toggle-track .toggle-thumb {
+      transform: translateX(24px);
+      background: var(--amber2);
     }
 
     .nav-badge {
       background: var(--amber3);
       color: var(--amber);
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 4px 10px;
       border-radius: 20px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: 1px solid var(--tip-border);
+      transition: background 0.3s;
     }
 
-    /* HERO */
+    /* ─── HERO ─── */
     .hero {
-      padding: 80px 5vw 60px;
+      padding: 70px 5vw 55px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 64px;
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
@@ -122,23 +265,25 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--olive4);
-      color: var(--olive);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 14px;
+      background: var(--green4);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
       border-radius: 20px;
       margin-bottom: 20px;
-      letter-spacing: 0.3px
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid var(--green3);
     }
 
     .hero-tag::before {
       content: '';
       width: 7px;
       height: 7px;
-      background: var(--olive2);
+      background: var(--green2);
       border-radius: 50%;
-      animation: pulse 2s infinite
+      animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
@@ -149,368 +294,492 @@
       }
 
       50% {
-        opacity: 0.4
+        opacity: 0.3
       }
     }
 
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 4.5vw, 58px);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 4.8vw, 62px);
       font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 18px
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      color: var(--text);
     }
 
     h1 em {
-      font-style: normal;
-      color: var(--olive)
+      font-style: italic;
+      color: var(--green);
     }
 
     .hero-sub {
-      font-size: 17px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 30px;
-      font-weight: 400
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      font-weight: 400;
+      max-width: 480px;
     }
 
     .hero-stats {
       display: flex;
-      gap: 28px;
-      margin-top: 10px
-    }
-
-    .stat {
-      text-align: left
+      gap: 32px;
+      margin-top: 8px;
     }
 
     .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
       font-weight: 700;
-      color: var(--olive);
-      line-height: 1
+      color: var(--green);
+      line-height: 1;
     }
 
     .stat-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 3px;
-      font-weight: 500
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
+    /* Hero Visual */
     .hero-visual {
-      background: var(--card-bg);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 28px;
       position: relative;
-      overflow: hidden
+      overflow: hidden;
+      box-shadow: 0 8px 40px var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
     }
 
     .hero-visual::before {
       content: '';
       position: absolute;
-      top: -40px;
-      right: -40px;
+      top: -60px;
+      right: -60px;
       width: 200px;
       height: 200px;
-      background: radial-gradient(circle, var(--olive4) 0%, transparent 70%);
-      pointer-events: none
+      background: radial-gradient(circle, var(--green4) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .fridge-preview {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 20px
+      margin-bottom: 18px;
     }
 
     .ingredient-chip {
-      background: var(--cream2);
-      border: 1px solid var(--border);
+      background: var(--card2);
+      border: 1px solid var(--border2);
       border-radius: 100px;
       padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--dark2)
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text2);
+      transition: all 0.3s;
     }
 
     .ingredient-chip.active {
-      background: var(--olive4);
-      border-color: var(--olive3);
-      color: var(--olive)
+      background: var(--green4);
+      border-color: var(--green3);
+      color: var(--green);
     }
 
     .arrow-divider {
       text-align: center;
-      color: var(--text-light);
-      font-size: 22px;
-      margin: 12px 0
+      color: var(--light);
+      font-size: 20px;
+      margin: 12px 0;
+      letter-spacing: 3px;
     }
 
     .recipe-card-preview {
       background: var(--amber3);
-      border: 1px solid #F0DDAA;
-      border-radius: 12px;
-      padding: 16px
+      border: 1px solid var(--tip-border);
+      border-radius: 14px;
+      padding: 16px;
+      transition: background 0.3s;
     }
 
     .recipe-card-preview h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      color: var(--dark);
-      margin-bottom: 6px
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
     }
 
     .recipe-card-preview p {
       font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.5
+      color: var(--muted);
+      line-height: 1.55;
     }
 
     .recipe-meta {
       display: flex;
-      gap: 12px;
-      margin-top: 10px
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
     }
 
     .meta-item {
       font-size: 11px;
-      color: var(--amber);
-      font-weight: 600;
-      background: #FFF;
+      font-weight: 700;
+      background: var(--card);
       border-radius: 6px;
-      padding: 3px 8px
+      padding: 3px 9px;
+      color: var(--amber);
     }
 
-    /* MAIN APP */
+    /* ─── DIVIDER ─── */
+    .wave-divider {
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(to bottom right, var(--bg2) 49%, transparent 50%);
+      margin-bottom: -1px;
+    }
+
+    /* ─── APP CONTAINER ─── */
     .app-container {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 0 5vw 80px
+      padding: 0 5vw 80px;
+    }
+
+    .app-intro {
+      text-align: center;
+      padding: 44px 0 36px;
+    }
+
+    .app-intro h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .app-intro p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ─── CARDS ─── */
+    .main-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 22px;
+      padding: 32px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 24px var(--shadow);
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
 
     .section-label {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 11px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--olive);
-      margin-bottom: 14px
+      letter-spacing: 2px;
+      color: var(--green);
+      margin-bottom: 16px;
     }
 
-    .main-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04)
-    }
-
-    /* INGREDIENT INPUT */
+    /* ─── INGREDIENT INPUT ─── */
     .input-row {
       display: flex;
       gap: 10px;
-      margin-bottom: 16px
+      margin-bottom: 16px;
     }
 
     .ingredient-input {
       flex: 1;
-      background: var(--cream);
+      background: var(--bg);
       border: 1.5px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
+      border-radius: 12px;
+      padding: 13px 18px;
       font-size: 15px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--dark);
+      font-weight: 500;
+      font-family: 'Syne', sans-serif;
+      color: var(--text);
       outline: none;
-      transition: border-color 0.2s
+      transition: all 0.2s;
     }
 
     .ingredient-input:focus {
-      border-color: var(--olive2);
-      background: #FFF
+      border-color: var(--green2);
+      background: var(--card);
+      box-shadow: 0 0 0 3px var(--green4);
     }
 
     .ingredient-input::placeholder {
-      color: var(--text-light)
+      color: var(--light);
     }
 
     .add-btn {
-      background: var(--olive);
-      color: #FFF;
+      background: var(--green);
+      color: #fff;
       border: none;
-      border-radius: 10px;
-      padding: 12px 20px;
+      border-radius: 12px;
+      padding: 13px 22px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
-      font-family: 'DM Sans', sans-serif;
-      transition: background 0.2s
+      font-family: 'Syne', sans-serif;
+      transition: all 0.2s;
+      letter-spacing: 0.3px;
     }
 
     .add-btn:hover {
-      background: var(--olive2)
+      background: var(--green2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(61, 107, 44, 0.25);
     }
 
     .chips-area {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      min-height: 40px;
-      padding: 4px 0
+      min-height: 44px;
+      padding: 4px 0;
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background: var(--olive4);
-      border: 1px solid var(--olive3);
+      background: var(--green4);
+      border: 1px solid var(--green3);
       border-radius: 100px;
-      padding: 7px 14px;
+      padding: 7px 15px;
       font-size: 13px;
-      font-weight: 500;
-      color: var(--olive)
+      font-weight: 600;
+      color: var(--green);
+      animation: chipIn 0.2s cubic-bezier(.34, 1.56, .64, 1);
+      transition: background 0.2s;
+    }
+
+    @keyframes chipIn {
+      from {
+        opacity: 0;
+        transform: scale(0.7)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
     }
 
     .chip-remove {
       cursor: pointer;
       font-size: 16px;
       line-height: 1;
-      opacity: 0.6;
+      opacity: 0.5;
       transition: opacity 0.15s;
       background: none;
       border: none;
-      color: var(--olive);
-      font-weight: 700
+      color: var(--green);
+      font-weight: 700;
     }
 
     .chip-remove:hover {
-      opacity: 1
+      opacity: 1;
     }
 
     .quick-add {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border)
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border2);
     }
 
     .quick-label {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 500
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
     .quick-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px
+      gap: 7px;
     }
 
     .quick-chip {
-      background: var(--cream2);
+      background: var(--card2);
       border: 1px solid var(--border);
       border-radius: 100px;
-      padding: 5px 12px;
+      padding: 6px 13px;
       font-size: 12px;
-      color: var(--text-muted);
+      font-weight: 600;
+      color: var(--muted);
       cursor: pointer;
       transition: all 0.15s;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500
+      font-family: 'Syne', sans-serif;
     }
 
     .quick-chip:hover {
-      background: var(--olive4);
-      border-color: var(--olive3);
-      color: var(--olive)
+      background: var(--green4);
+      border-color: var(--green3);
+      color: var(--green);
     }
 
-    /* PREFERENCES */
+    /* ─── PREFERENCES ─── */
     .prefs-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
 
     .pref-card {
-      background: var(--cream);
+      background: var(--bg);
       border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
+      border-radius: 14px;
+      padding: 16px;
       cursor: pointer;
       transition: all 0.2s;
-      user-select: none
+      user-select: none;
+    }
+
+    .pref-card:hover {
+      border-color: var(--green3);
+      background: var(--green4);
     }
 
     .pref-card.selected {
-      background: var(--olive4);
-      border-color: var(--olive3)
+      background: var(--green4);
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px var(--green4);
+    }
+
+    .pref-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
     }
 
     .pref-card h5 {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 2px
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
     }
 
     .pref-card p {
       font-size: 11px;
-      color: var(--text-muted)
+      color: var(--muted);
     }
 
-    .pref-icon {
-      font-size: 20px;
-      margin-bottom: 8px
+    /* ─── RECIPE COUNT SLIDER ─── */
+    .count-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 0;
     }
 
-    /* GENERATE BUTTON */
+    .count-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text2);
+      min-width: 110px;
+    }
+
+    .count-badge {
+      background: var(--green4);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--green3);
+    }
+
+    .count-slider {
+      flex: 1;
+      appearance: none;
+      height: 5px;
+      background: var(--border);
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .count-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--green);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px var(--shadow2);
+      transition: background 0.2s;
+    }
+
+    .count-slider:hover::-webkit-slider-thumb {
+      background: var(--green2);
+    }
+
+    /* ─── GENERATE BUTTON ─── */
     .generate-btn {
       width: 100%;
-      background: var(--olive);
-      color: #FFF;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green2) 100%);
+      color: #fff;
       border: none;
-      border-radius: 14px;
-      padding: 18px;
+      border-radius: 16px;
+      padding: 19px;
       font-size: 17px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      letter-spacing: -0.2px;
-      transition: all 0.2s;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.3px;
+      transition: all 0.25s;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 6px 24px rgba(61, 107, 44, 0.2);
+    }
+
+    .generate-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
     }
 
     .generate-btn:hover:not(:disabled) {
-      background: var(--olive2);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 30px rgba(92, 107, 46, 0.25)
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(61, 107, 44, 0.3);
     }
 
     .generate-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .generate-btn .spinner {
       width: 18px;
       height: 18px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #FFF;
+      border: 2.5px solid var(--spinner-border);
+      border-top-color: #fff;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite
+      animation: spin 0.8s linear infinite;
     }
 
     @keyframes spin {
@@ -519,160 +788,203 @@
       }
     }
 
-    /* RESULTS */
+    /* ─── RESULTS ─── */
     .results-area {
-      margin-top: 32px
+      margin-top: 36px;
     }
 
     .results-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px
+      margin-bottom: 22px;
     }
 
     .results-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      font-weight: 700
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--text);
     }
 
     .recipe-count {
       background: var(--amber3);
       color: var(--amber);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 20px
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--tip-border);
     }
 
     .recipe-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 20px
+      gap: 22px;
     }
 
     .recipe-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 22px;
       overflow: hidden;
-      transition: box-shadow 0.2s
+      transition: all 0.25s;
+      animation: slideIn 0.4s cubic-bezier(.2, .8, .2, 1) both;
+      box-shadow: 0 2px 16px var(--shadow);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
     }
 
     .recipe-item:hover {
-      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08)
+      box-shadow: 0 10px 40px var(--shadow2);
+      transform: translateY(-2px);
+    }
+
+    .recipe-accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--amber2));
+    }
+
+    .recipe-item:nth-child(2) .recipe-accent-bar {
+      background: linear-gradient(90deg, var(--amber2), var(--green));
+    }
+
+    .recipe-item:nth-child(3) .recipe-accent-bar {
+      background: linear-gradient(90deg, var(--blue), var(--green2));
+    }
+
+    .recipe-item:nth-child(4) .recipe-accent-bar {
+      background: linear-gradient(90deg, var(--green2), var(--blue));
+    }
+
+    .recipe-item:nth-child(5) .recipe-accent-bar {
+      background: linear-gradient(90deg, var(--amber), var(--red));
+    }
+
+    .recipe-item:nth-child(6) .recipe-accent-bar {
+      background: linear-gradient(90deg, var(--red), var(--amber2));
     }
 
     .recipe-header {
-      padding: 24px 24px 0;
+      padding: 22px 24px 0;
       display: flex;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px
+      gap: 16px;
     }
 
     .recipe-number {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: var(--olive4);
-      color: var(--olive);
+      background: var(--green4);
+      color: var(--green);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0
+      flex-shrink: 0;
+      border: 2px solid var(--green3);
     }
 
     .recipe-title-block {
-      flex: 1
+      flex: 1;
     }
 
     .recipe-title-block h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
       font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
-      line-height: 1.2
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.2;
     }
 
     .recipe-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 12px
     }
 
     .tag {
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 10px;
+      font-weight: 700;
       padding: 3px 10px;
       border-radius: 20px;
-      letter-spacing: 0.3px;
-      text-transform: uppercase
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
     }
 
     .tag-time {
       background: var(--amber3);
-      color: var(--amber)
+      color: var(--amber);
+      border: 1px solid var(--tip-border);
     }
 
     .tag-diff {
-      background: #EDF0FF;
-      color: #4B5ADB
+      background: var(--tag-diff-bg);
+      color: var(--tag-diff-c);
     }
 
     .tag-cals {
-      background: #FFF0F3;
-      color: #C0334D
+      background: var(--tag-cal-bg);
+      color: var(--tag-cal-c);
     }
 
     .tag-match {
-      background: var(--olive4);
-      color: var(--olive)
+      background: var(--green4);
+      color: var(--green);
+      border: 1px solid var(--green3);
     }
 
     .recipe-body {
-      padding: 20px 24px 24px
+      padding: 18px 24px 24px;
     }
 
     .recipe-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 20px
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 22px;
     }
 
     .recipe-sections {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px
+      gap: 22px;
     }
 
     .section-title {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 10px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-light);
-      margin-bottom: 10px
+      letter-spacing: 1.5px;
+      color: var(--light);
+      margin-bottom: 10px;
     }
 
     .ing-list {
-      list-style: none
+      list-style: none;
     }
 
     .ing-list li {
       font-size: 14px;
-      color: var(--dark2);
+      color: var(--text2);
       padding: 4px 0;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 8px;
-      line-height: 1.4
+      line-height: 1.45;
     }
 
     .ing-list li::before {
@@ -680,200 +992,174 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--olive3);
-      flex-shrink: 0
+      background: var(--border);
+      flex-shrink: 0;
+      margin-top: 7px;
     }
 
     .ing-list li.have {
-      color: var(--olive)
+      color: var(--green);
     }
 
     .ing-list li.have::before {
-      background: var(--olive2)
+      background: var(--green2);
     }
 
     .steps-list {
-      counter-reset: steps
+      counter-reset: steps;
+      list-style: none;
     }
 
     .steps-list li {
       font-size: 14px;
-      color: var(--dark2);
-      padding: 4px 0 4px 22px;
+      color: var(--text2);
+      padding: 5px 0 5px 28px;
       position: relative;
-      line-height: 1.5;
-      counter-increment: steps
+      line-height: 1.55;
+      counter-increment: steps;
     }
 
     .steps-list li::before {
       content: counter(steps);
       position: absolute;
       left: 0;
-      top: 4px;
-      width: 16px;
-      height: 16px;
+      top: 5px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: var(--olive);
-      color: #FFF;
+      background: var(--green);
+      color: #fff;
       font-size: 9px;
-      font-weight: 700;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      line-height: 16px;
-      text-align: center
     }
 
     .tip-box {
-      margin-top: 16px;
+      margin-top: 18px;
       background: var(--amber3);
-      border: 1px solid #F0DDAA;
-      border-radius: 10px;
-      padding: 12px 16px;
+      border: 1px solid var(--tip-border);
+      border-radius: 12px;
+      padding: 14px 18px;
       font-size: 13px;
-      color: #7A5520;
-      line-height: 1.5
+      color: var(--tip-text);
+      line-height: 1.6;
     }
 
     .tip-box strong {
       color: var(--amber);
-      font-weight: 700
+      font-weight: 800;
     }
 
-    /* EMPTY STATE */
-    .empty-state {
-      text-align: center;
-      padding: 60px 30px;
-      color: var(--text-muted)
+    /* ─── ERROR ─── */
+    .error-box {
+      background: var(--tag-cal-bg);
+      border: 1px solid var(--tag-cal-c);
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: var(--red);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .empty-icon {
-      font-size: 48px;
-      margin-bottom: 14px
-    }
-
-    .empty-state h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      color: var(--dark);
-      margin-bottom: 8px
-    }
-
-    .empty-state p {
-      font-size: 15px;
-      line-height: 1.6
-    }
-
-    /* TRUST BAR */
+    /* ─── TRUST BAR ─── */
     .trust-bar {
-      background: var(--dark);
-      color: #FFF;
-      padding: 20px 5vw;
+      background: var(--dark2);
+      color: #fff;
+      padding: 22px 5vw;
       display: flex;
       justify-content: center;
-      gap: 60px;
-      margin-bottom: 0
+      gap: 50px;
+      flex-wrap: wrap;
+      transition: background 0.3s;
+    }
+
+    [data-theme="dark"] .trust-bar {
+      background: #0D0C09;
     }
 
     .trust-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: 500
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     .trust-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--olive2)
+      background: var(--green2);
     }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
-      background: var(--dark2);
-      padding: 30px 5vw;
+      background: var(--dark);
+      padding: 28px 5vw;
       text-align: center;
-      color: var(--text-light);
-      font-size: 13px
+      font-size: 13px;
+      color: var(--muted);
+      transition: background 0.3s;
+    }
+
+    [data-theme="dark"] footer {
+      background: #0A0906;
     }
 
     footer a {
-      color: var(--olive3);
-      text-decoration: none
+      color: var(--green3);
+      text-decoration: none;
     }
 
-    /* ERROR */
-    .error-box {
-      background: #FFF5F5;
-      border: 1px solid #FECACA;
-      border-radius: 12px;
-      padding: 16px 20px;
-      color: var(--red);
-      font-size: 14px;
-      margin-top: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px
+    footer strong {
+      color: var(--green2);
     }
 
-    /* API KEY NOTICE */
-    .api-notice {
-      background: var(--amber3);
-      border: 1px solid #F0DDAA;
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 13px;
-      color: #7A5520;
-      margin-bottom: 20px;
-      line-height: 1.6
-    }
-
-    .api-notice strong {
-      color: var(--amber)
-    }
-
-    .api-key-input {
-      width: 100%;
-      background: #FFF;
-      border: 1.5px solid #F0DDAA;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--dark);
-      outline: none;
-      margin-top: 8px
-    }
-
-    .api-key-input:focus {
-      border-color: var(--olive2)
-    }
-
-    @media(max-width:768px) {
+    /* ─── RESPONSIVE ─── */
+    @media(max-width: 768px) {
       .hero {
         grid-template-columns: 1fr;
-        gap: 30px
+        gap: 28px;
+        padding: 50px 5vw 40px;
       }
 
       .hero-visual {
-        display: none
+        display: none;
       }
 
       .prefs-grid {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
       }
 
       .recipe-sections {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
       }
 
       .trust-bar {
         flex-direction: column;
-        gap: 16px;
-        align-items: flex-start
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .header-controls {
+        gap: 8px;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
       }
     }
   </style>
@@ -881,40 +1167,62 @@
 
 <body>
 
+  <!-- ═══ HEADER ═══ -->
   <header>
     <a class="logo" href="#">
       <div class="logo-icon">🥦</div>
-      <span class="logo-text">Fridge<span>Chef</span> AI</span>
+      <span class="logo-text">Fridge<em>Chef</em> AI</span>
     </a>
-    <nav>
+    <div class="header-controls">
       <span class="nav-badge">✦ AI Powered</span>
-    </nav>
+
+      <!-- Language Selector -->
+      <div class="lang-select-wrapper">
+        <select class="lang-select" id="langSelect" onchange="setLanguage(this.value)">
+          <option value="en">🇺🇸 English</option>
+          <option value="id">🇮🇩 Bahasa</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="zh">🇨🇳 中文</option>
+        </select>
+      </div>
+
+      <!-- Dark Mode Toggle -->
+      <label class="theme-toggle" title="Toggle dark mode">
+        <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
+        <div class="toggle-track">
+          <div class="toggle-thumb" id="toggleThumb">☀️</div>
+        </div>
+      </label>
+    </div>
   </header>
 
+  <!-- ═══ HERO ═══ -->
   <section class="hero">
     <div>
-      <div class="hero-tag">Smart Recipe Generator</div>
-      <h1>Turn your fridge into a <em>5-star kitchen</em></h1>
-      <p class="hero-sub">Add the ingredients you have on hand, and our AI chef will create personalized recipes,
-        step-by-step instructions, and pro cooking tips — all tailored to what's in your fridge right now.</p>
+      <div class="hero-tag" id="heroTag">Smart Recipe Generator</div>
+      <h1 id="heroTitle">Turn your fridge into a <em>5-star kitchen</em></h1>
+      <p class="hero-sub" id="heroSub">Add the ingredients you have on hand, and our AI chef will create personalized
+        recipes, step-by-step instructions, and pro cooking tips — all tailored to what's in your fridge right now.</p>
       <div class="hero-stats">
         <div class="stat">
           <div class="stat-num">10K+</div>
-          <div class="stat-label">Recipes generated</div>
+          <div class="stat-label" id="stat1">Recipes generated</div>
         </div>
         <div class="stat">
           <div class="stat-num">95%</div>
-          <div class="stat-label">User satisfaction</div>
+          <div class="stat-label" id="stat2">User satisfaction</div>
         </div>
         <div class="stat">
           <div class="stat-num">40%</div>
-          <div class="stat-label">Less food waste</div>
+          <div class="stat-label" id="stat3">Less food waste</div>
         </div>
       </div>
     </div>
     <div class="hero-visual">
       <p
-        style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-light);margin-bottom:12px">
+        style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--light);margin-bottom:12px">
         What's in your fridge?</p>
       <div class="fridge-preview">
         <span class="ingredient-chip active">🥚 Eggs</span>
@@ -924,9 +1232,9 @@
         <span class="ingredient-chip active">🧅 Onion</span>
         <span class="ingredient-chip">🍋 Lemon</span>
       </div>
-      <div class="arrow-divider">↓ AI magic ↓</div>
+      <div class="arrow-divider">↓ ✦ ↓</div>
       <div class="recipe-card-preview">
-        <h4>Broccoli & Cheddar Frittata</h4>
+        <h4>Broccoli &amp; Cheddar Frittata</h4>
         <p>A rich, golden egg frittata loaded with crisp broccoli florets and melted sharp cheddar.</p>
         <div class="recipe-meta">
           <span class="meta-item">⏱ 20 min</span>
@@ -937,20 +1245,25 @@
     </div>
   </section>
 
+  <!-- ═══ APP ═══ -->
   <main class="app-container">
 
+    <div class="app-intro">
+      <h2 id="appTitle">Create Your Recipes</h2>
+      <p id="appSubtitle">Tell us what you have, we'll tell you what to cook.</p>
+    </div>
 
-    <!-- Step 1: Ingredients -->
+    <!-- Step 1 -->
     <div class="main-card">
-      <div class="section-label">Step 1 — Add your ingredients</div>
+      <div class="section-label" id="step1Label">Step 1 — Add your ingredients</div>
       <div class="input-row">
-        <input class="ingredient-input" id="ingredientInput" type="text"
-          placeholder="Type an ingredient (e.g. chicken, garlic, tomatoes...)" autocomplete="off" />
+        <input class="ingredient-input" id="ingredientInput" type="text" placeholder="e.g. chicken, garlic, tomatoes..."
+          autocomplete="off" />
         <button class="add-btn" id="addBtn">+ Add</button>
       </div>
       <div class="chips-area" id="chipsArea"></div>
       <div class="quick-add">
-        <p class="quick-label">Quick add common ingredients:</p>
+        <p class="quick-label" id="quickLabel">Quick add:</p>
         <div class="quick-chips" id="quickChips">
           <span class="quick-chip" onclick="quickAdd('Chicken')">🍗 Chicken</span>
           <span class="quick-chip" onclick="quickAdd('Eggs')">🥚 Eggs</span>
@@ -964,44 +1277,57 @@
           <span class="quick-chip" onclick="quickAdd('Spinach')">🥬 Spinach</span>
           <span class="quick-chip" onclick="quickAdd('Butter')">🧈 Butter</span>
           <span class="quick-chip" onclick="quickAdd('Lemon')">🍋 Lemon</span>
+          <span class="quick-chip" onclick="quickAdd('Beef')">🥩 Beef</span>
+          <span class="quick-chip" onclick="quickAdd('Mushrooms')">🍄 Mushrooms</span>
         </div>
       </div>
     </div>
 
-    <!-- Step 2: Preferences -->
+    <!-- Step 2 -->
     <div class="main-card">
-      <div class="section-label">Step 2 — Meal preferences (optional)</div>
+      <div class="section-label" id="step2Label">Step 2 — Meal preferences (optional)</div>
       <div class="prefs-grid" id="prefsGrid">
         <div class="pref-card" data-pref="Quick & Easy" onclick="togglePref(this)">
           <div class="pref-icon">⚡</div>
-          <h5>Quick & Easy</h5>
-          <p>Under 30 minutes</p>
+          <h5 id="pref1title">Quick &amp; Easy</h5>
+          <p id="pref1sub">Under 30 minutes</p>
         </div>
         <div class="pref-card" data-pref="Healthy" onclick="togglePref(this)">
           <div class="pref-icon">🥗</div>
-          <h5>Healthy</h5>
-          <p>Low calorie, nutritious</p>
+          <h5 id="pref2title">Healthy</h5>
+          <p id="pref2sub">Low calorie, nutritious</p>
         </div>
         <div class="pref-card" data-pref="Comfort Food" onclick="togglePref(this)">
           <div class="pref-icon">🍲</div>
-          <h5>Comfort Food</h5>
-          <p>Hearty and satisfying</p>
+          <h5 id="pref3title">Comfort Food</h5>
+          <p id="pref3sub">Hearty and satisfying</p>
         </div>
         <div class="pref-card" data-pref="Vegetarian" onclick="togglePref(this)">
           <div class="pref-icon">🌱</div>
-          <h5>Vegetarian</h5>
-          <p>No meat or fish</p>
+          <h5 id="pref4title">Vegetarian</h5>
+          <p id="pref4sub">No meat or fish</p>
         </div>
         <div class="pref-card" data-pref="High Protein" onclick="togglePref(this)">
           <div class="pref-icon">💪</div>
-          <h5>High Protein</h5>
-          <p>Muscle-building meals</p>
+          <h5 id="pref5title">High Protein</h5>
+          <p id="pref5sub">Muscle-building meals</p>
         </div>
         <div class="pref-card" data-pref="Gourmet" onclick="togglePref(this)">
           <div class="pref-icon">👨‍🍳</div>
-          <h5>Gourmet</h5>
-          <p>Restaurant-quality dishes</p>
+          <h5 id="pref6title">Gourmet</h5>
+          <p id="pref6sub">Restaurant-quality dishes</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Recipe Count -->
+    <div class="main-card">
+      <div class="section-label" id="step3Label">Step 3 — How many recipes?</div>
+      <div class="count-row">
+        <span class="count-label" id="recipeCountLabel">Recipes to generate:</span>
+        <input type="range" class="count-slider" id="recipeCountSlider" min="3" max="6" value="5"
+          oninput="updateCount(this.value)">
+        <div class="count-badge" id="recipeCountBadge">5</div>
       </div>
     </div>
 
@@ -1013,33 +1339,269 @@
 
     <!-- Results -->
     <div class="results-area" id="resultsArea"></div>
+
   </main>
 
   <div class="trust-bar">
     <div class="trust-item">
-      <div class="trust-dot"></div>AI-powered ingredient matching
+      <div class="trust-dot"></div><span id="trust1">AI-powered ingredient matching</span>
     </div>
     <div class="trust-item">
-      <div class="trust-dot"></div>Step-by-step cooking instructions
+      <div class="trust-dot"></div><span id="trust2">Step-by-step cooking instructions</span>
     </div>
     <div class="trust-item">
-      <div class="trust-dot"></div>Nutritional estimates included
+      <div class="trust-dot"></div><span id="trust3">Nutritional estimates included</span>
     </div>
     <div class="trust-item">
-      <div class="trust-dot"></div>Zero food waste philosophy
+      <div class="trust-dot"></div><span id="trust4">Zero food waste philosophy</span>
     </div>
   </div>
 
   <footer>
-    <p>Made with ❤️ by <strong style="color:var(--olive3)">FridgeChef AI</strong> — Powered by Claude AI &nbsp;·&nbsp;
+    <p>Made with ❤️ by <strong>FridgeChef AI</strong> — Powered by Claude AI &nbsp;·&nbsp;
       <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a>
     </p>
   </footer>
 
   <script>
+    // ─── STATE ───
     let ingredients = [];
     let preferences = [];
+    let recipeCount = 5;
+    let currentLang = 'en';
 
+    // ─── TRANSLATIONS ───
+    const T = {
+      en: {
+        heroTag: 'Smart Recipe Generator',
+        heroTitle: 'Turn your fridge into a <em>5-star kitchen</em>',
+        heroSub: 'Add the ingredients you have on hand, and our AI chef will create personalized recipes, step-by-step instructions, and pro cooking tips — all tailored to what\'s in your fridge right now.',
+        stat1: 'Recipes generated', stat2: 'User satisfaction', stat3: 'Less food waste',
+        appTitle: 'Create Your Recipes', appSubtitle: 'Tell us what you have, we\'ll tell you what to cook.',
+        step1Label: 'Step 1 — Add your ingredients',
+        inputPlaceholder: 'e.g. chicken, garlic, tomatoes...',
+        addBtn: '+ Add',
+        quickLabel: 'Quick add:',
+        step2Label: 'Step 2 — Meal preferences (optional)',
+        step3Label: 'Step 3 — How many recipes?',
+        recipeCountLabel: 'Recipes to generate:',
+        pref1title: 'Quick & Easy', pref1sub: 'Under 30 minutes',
+        pref2title: 'Healthy', pref2sub: 'Low calorie, nutritious',
+        pref3title: 'Comfort Food', pref3sub: 'Hearty and satisfying',
+        pref4title: 'Vegetarian', pref4sub: 'No meat or fish',
+        pref5title: 'High Protein', pref5sub: 'Muscle-building meals',
+        pref6title: 'Gourmet', pref6sub: 'Restaurant-quality dishes',
+        generateBtn: 'Generate My Recipes',
+        generating: 'Crafting your personalized recipes...',
+        resultsTitle: 'Your Personalized Recipes',
+        recipesFound: 'recipes found',
+        noIngredients: '⚠️ Please add at least 2 ingredients to get recipe suggestions.',
+        noRecipes: 'No recipes found. Try adding more ingredients.',
+        trust1: 'AI-powered ingredient matching', trust2: 'Step-by-step cooking instructions',
+        trust3: 'Nutritional estimates included', trust4: 'Zero food waste philosophy',
+        chefTip: 'Chef\'s Tip',
+        noIngredientsYet: 'No ingredients yet — add some above!',
+        promptLang: 'English',
+      },
+      id: {
+        heroTag: 'Generator Resep Cerdas',
+        heroTitle: 'Ubah kulkasmu menjadi <em>dapur bintang 5</em>',
+        heroSub: 'Tambahkan bahan-bahan yang kamu punya, dan chef AI kami akan membuat resep personal, instruksi langkah demi langkah, dan tips memasak pro — sesuai isi kulkasmu saat ini.',
+        stat1: 'Resep dibuat', stat2: 'Kepuasan pengguna', stat3: 'Kurangi limbah makanan',
+        appTitle: 'Buat Resepmu', appSubtitle: 'Beritahu apa yang kamu punya, kami akan bilang apa yang dimasak.',
+        step1Label: 'Langkah 1 — Tambah bahan-bahanmu',
+        inputPlaceholder: 'mis. ayam, bawang putih, tomat...',
+        addBtn: '+ Tambah',
+        quickLabel: 'Tambah cepat:',
+        step2Label: 'Langkah 2 — Preferensi makanan (opsional)',
+        step3Label: 'Langkah 3 — Berapa banyak resep?',
+        recipeCountLabel: 'Resep yang dibuat:',
+        pref1title: 'Cepat & Mudah', pref1sub: 'Kurang dari 30 menit',
+        pref2title: 'Sehat', pref2sub: 'Rendah kalori, bergizi',
+        pref3title: 'Makanan Rumahan', pref3sub: 'Mengenyangkan dan memuaskan',
+        pref4title: 'Vegetarian', pref4sub: 'Tanpa daging atau ikan',
+        pref5title: 'Protein Tinggi', pref5sub: 'Makanan pembentuk otot',
+        pref6title: 'Gourmet', pref6sub: 'Hidangan berkualitas restoran',
+        generateBtn: 'Buat Resepku',
+        generating: 'Membuat resep personalmu...',
+        resultsTitle: 'Resep Personalmu',
+        recipesFound: 'resep ditemukan',
+        noIngredients: '⚠️ Tambahkan minimal 2 bahan untuk mendapatkan saran resep.',
+        noRecipes: 'Tidak ada resep ditemukan. Coba tambah lebih banyak bahan.',
+        trust1: 'Pencocokan bahan bertenaga AI', trust2: 'Instruksi memasak langkah demi langkah',
+        trust3: 'Estimasi nutrisi disertakan', trust4: 'Filosofi nol limbah makanan',
+        chefTip: 'Tips Chef',
+        noIngredientsYet: 'Belum ada bahan — tambahkan di atas!',
+        promptLang: 'Indonesian (Bahasa Indonesia)',
+      },
+      es: {
+        heroTag: 'Generador de Recetas Inteligente',
+        heroTitle: 'Convierte tu nevera en una <em>cocina de 5 estrellas</em>',
+        heroSub: 'Añade los ingredientes que tienes a mano y nuestro chef IA creará recetas personalizadas, instrucciones paso a paso y consejos profesionales — todo adaptado a lo que hay en tu nevera.',
+        stat1: 'Recetas generadas', stat2: 'Satisfacción de usuarios', stat3: 'Menos desperdicio',
+        appTitle: 'Crea tus Recetas', appSubtitle: 'Dinos lo que tienes, te diremos qué cocinar.',
+        step1Label: 'Paso 1 — Añade tus ingredientes',
+        inputPlaceholder: 'p.ej. pollo, ajo, tomates...',
+        addBtn: '+ Añadir',
+        quickLabel: 'Añadir rápido:',
+        step2Label: 'Paso 2 — Preferencias de comida (opcional)',
+        step3Label: 'Paso 3 — ¿Cuántas recetas?',
+        recipeCountLabel: 'Recetas a generar:',
+        pref1title: 'Rápido y Fácil', pref1sub: 'Menos de 30 minutos',
+        pref2title: 'Saludable', pref2sub: 'Bajo en calorías, nutritivo',
+        pref3title: 'Comida Reconfortante', pref3sub: 'Abundante y satisfactorio',
+        pref4title: 'Vegetariano', pref4sub: 'Sin carne ni pescado',
+        pref5title: 'Alto en Proteínas', pref5sub: 'Comidas para construir músculo',
+        pref6title: 'Gourmet', pref6sub: 'Platos de calidad restaurante',
+        generateBtn: 'Generar Mis Recetas',
+        generating: 'Creando tus recetas personalizadas...',
+        resultsTitle: 'Tus Recetas Personalizadas',
+        recipesFound: 'recetas encontradas',
+        noIngredients: '⚠️ Añade al menos 2 ingredientes para obtener sugerencias de recetas.',
+        noRecipes: 'No se encontraron recetas. Intenta añadir más ingredientes.',
+        trust1: 'Coincidencia de ingredientes con IA', trust2: 'Instrucciones de cocina paso a paso',
+        trust3: 'Estimaciones nutricionales incluidas', trust4: 'Filosofía cero desperdicio',
+        chefTip: 'Consejo del Chef',
+        noIngredientsYet: 'Sin ingredientes aún — ¡añade algunos arriba!',
+        promptLang: 'Spanish (Español)',
+      },
+      fr: {
+        heroTag: 'Générateur de Recettes Intelligent',
+        heroTitle: 'Transformez votre frigo en <em>cuisine 5 étoiles</em>',
+        heroSub: 'Ajoutez les ingrédients que vous avez sous la main, et notre chef IA créera des recettes personnalisées, des instructions étape par étape et des conseils de pro — le tout adapté à votre frigo.',
+        stat1: 'Recettes générées', stat2: 'Satisfaction utilisateur', stat3: 'Moins de gaspillage',
+        appTitle: 'Créez Vos Recettes', appSubtitle: 'Dites-nous ce que vous avez, nous vous dirons quoi cuisiner.',
+        step1Label: 'Étape 1 — Ajoutez vos ingrédients',
+        inputPlaceholder: 'ex. poulet, ail, tomates...',
+        addBtn: '+ Ajouter',
+        quickLabel: 'Ajout rapide :',
+        step2Label: 'Étape 2 — Préférences culinaires (optionnel)',
+        step3Label: 'Étape 3 — Combien de recettes ?',
+        recipeCountLabel: 'Recettes à générer :',
+        pref1title: 'Rapide et Facile', pref1sub: 'Moins de 30 minutes',
+        pref2title: 'Sain', pref2sub: 'Peu calorique, nutritif',
+        pref3title: 'Réconfortant', pref3sub: 'Copieux et satisfaisant',
+        pref4title: 'Végétarien', pref4sub: 'Sans viande ni poisson',
+        pref5title: 'Riche en Protéines', pref5sub: 'Repas pour la musculation',
+        pref6title: 'Gastronomique', pref6sub: 'Plats de qualité restaurant',
+        generateBtn: 'Générer Mes Recettes',
+        generating: 'Création de vos recettes personnalisées...',
+        resultsTitle: 'Vos Recettes Personnalisées',
+        recipesFound: 'recettes trouvées',
+        noIngredients: '⚠️ Ajoutez au moins 2 ingrédients pour obtenir des suggestions de recettes.',
+        noRecipes: 'Aucune recette trouvée. Essayez d\'ajouter plus d\'ingrédients.',
+        trust1: 'Correspondance d\'ingrédients par IA', trust2: 'Instructions de cuisine étape par étape',
+        trust3: 'Estimations nutritionnelles incluses', trust4: 'Philosophie zéro gaspillage',
+        chefTip: 'Conseil du Chef',
+        noIngredientsYet: 'Pas encore d\'ingrédients — ajoutez-en ci-dessus !',
+        promptLang: 'French (Français)',
+      },
+      ar: {
+        heroTag: 'مولّد وصفات ذكي',
+        heroTitle: 'حوّل ثلاجتك إلى <em>مطبخ 5 نجوم</em>',
+        heroSub: 'أضف المكونات المتوفرة لديك، وسيقوم طاهينا الذكي بإنشاء وصفات مخصصة وتعليمات خطوة بخطوة ونصائح احترافية — كل ذلك مصمم خصيصاً لما في ثلاجتك.',
+        stat1: 'وصفة منشأة', stat2: 'رضا المستخدمين', stat3: 'أقل هدراً للطعام',
+        appTitle: 'أنشئ وصفاتك', appSubtitle: 'أخبرنا بما لديك، وسنخبرك بما تطبخ.',
+        step1Label: 'الخطوة 1 — أضف مكوناتك',
+        inputPlaceholder: 'مثل: دجاج، ثوم، طماطم...',
+        addBtn: '+ أضف',
+        quickLabel: 'إضافة سريعة:',
+        step2Label: 'الخطوة 2 — تفضيلات الوجبة (اختياري)',
+        step3Label: 'الخطوة 3 — كم عدد الوصفات؟',
+        recipeCountLabel: 'الوصفات المراد إنشاؤها:',
+        pref1title: 'سريع وسهل', pref1sub: 'أقل من 30 دقيقة',
+        pref2title: 'صحي', pref2sub: 'منخفض السعرات، مغذٍّ',
+        pref3title: 'طعام مريح', pref3sub: 'شهي ومشبع',
+        pref4title: 'نباتي', pref4sub: 'بدون لحوم أو أسماك',
+        pref5title: 'غني بالبروتين', pref5sub: 'وجبات لبناء العضلات',
+        pref6title: 'فاخر', pref6sub: 'أطباق بجودة مطعم',
+        generateBtn: 'اصنع وصفاتي',
+        generating: 'جاري إنشاء وصفاتك المخصصة...',
+        resultsTitle: 'وصفاتك المخصصة',
+        recipesFound: 'وصفات وُجدت',
+        noIngredients: '⚠️ أضف مكونين على الأقل للحصول على اقتراحات الوصفات.',
+        noRecipes: 'لم يتم العثور على وصفات. حاول إضافة المزيد من المكونات.',
+        trust1: 'مطابقة المكونات بالذكاء الاصطناعي', trust2: 'تعليمات طبخ خطوة بخطوة',
+        trust3: 'تقديرات غذائية مدرجة', trust4: 'فلسفة صفر هدر الطعام',
+        chefTip: 'نصيحة الطاهي',
+        noIngredientsYet: 'لا مكونات بعد — أضف بعضها أعلاه!',
+        promptLang: 'Arabic (العربية)',
+      },
+      zh: {
+        heroTag: '智能食谱生成器',
+        heroTitle: '把你的冰箱变成 <em>五星级厨房</em>',
+        heroSub: '添加你手头有的食材，我们的AI厨师将为你创建个性化食谱、分步骤说明和专业烹饪技巧 — 完全根据你冰箱里的食材定制。',
+        stat1: '已生成食谱', stat2: '用户满意度', stat3: '减少食物浪费',
+        appTitle: '创建你的食谱', appSubtitle: '告诉我们你有什么，我们来告诉你做什么。',
+        step1Label: '第1步 — 添加你的食材',
+        inputPlaceholder: '例如：鸡肉、大蒜、西红柿...',
+        addBtn: '+ 添加',
+        quickLabel: '快速添加：',
+        step2Label: '第2步 — 饮食偏好（可选）',
+        step3Label: '第3步 — 需要几个食谱？',
+        recipeCountLabel: '生成的食谱数量：',
+        pref1title: '快速简单', pref1sub: '30分钟以内',
+        pref2title: '健康', pref2sub: '低热量，营养丰富',
+        pref3title: '家常菜', pref3sub: '丰盛又满足',
+        pref4title: '素食', pref4sub: '不含肉类或鱼',
+        pref5title: '高蛋白', pref5sub: '增肌餐',
+        pref6title: '精致料理', pref6sub: '餐厅级别菜肴',
+        generateBtn: '生成我的食谱',
+        generating: '正在制作你的个性化食谱...',
+        resultsTitle: '你的个性化食谱',
+        recipesFound: '个食谱',
+        noIngredients: '⚠️ 请至少添加2种食材才能获得食谱建议。',
+        noRecipes: '未找到食谱。请尝试添加更多食材。',
+        trust1: 'AI食材匹配', trust2: '分步烹饪说明',
+        trust3: '包含营养估算', trust4: '零食物浪费理念',
+        chefTip: '厨师小贴士',
+        noIngredientsYet: '还没有食材 — 在上方添加一些吧！',
+        promptLang: 'Chinese (中文)',
+      }
+    };
+
+    function t(key) { return T[currentLang]?.[key] ?? T['en'][key]; }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.setAttribute('data-lang', lang);
+      // RTL support for Arabic
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      applyTranslations();
+    }
+
+    function applyTranslations() {
+      const ids = [
+        'heroTag', 'heroSub', 'stat1', 'stat2', 'stat3',
+        'appTitle', 'appSubtitle', 'step1Label', 'step2Label', 'step3Label',
+        'recipeCountLabel', 'quickLabel',
+        'pref1title', 'pref1sub', 'pref2title', 'pref2sub',
+        'pref3title', 'pref3sub', 'pref4title', 'pref4sub',
+        'pref5title', 'pref5sub', 'pref6title', 'pref6sub',
+        'trust1', 'trust2', 'trust3', 'trust4'
+      ];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = t(id);
+      });
+      // heroTitle has innerHTML
+      const heroTitleEl = document.getElementById('heroTitle');
+      if (heroTitleEl) heroTitleEl.innerHTML = t('heroTitle');
+
+      document.getElementById('addBtn').textContent = t('addBtn');
+      document.getElementById('ingredientInput').placeholder = t('inputPlaceholder');
+      document.getElementById('btnText').textContent = t('generateBtn');
+      renderChips(); // re-render empty state message if needed
+    }
+
+    // ─── THEME ───
+    function toggleTheme() {
+      const isDark = document.getElementById('themeToggle').checked;
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      document.getElementById('toggleThumb').textContent = isDark ? '🌙' : '☀️';
+    }
+
+    // ─── EMOJI MAP ───
     const emojiMap = {
       chicken: '🍗', egg: '🥚', eggs: '🥚', garlic: '🧄', onion: '🧅', onions: '🧅',
       tomato: '🍅', tomatoes: '🍅', rice: '🍚', pasta: '🍝', cheese: '🧀',
@@ -1052,24 +1614,27 @@
       lettuce: '🥬', cucumber: '🥒', zucchini: '🥒', corn: '🌽', tofu: '🧊',
       soy: '🫘', beans: '🫘', lentils: '🫘', ginger: '🫚', cilantro: '🌿',
       basil: '🌿', thyme: '🌿', rosemary: '🌿', parsley: '🌿', mint: '🌿',
+      ayam: '🍗', telur: '🥚', bawang: '🧅', tomat: '🍅', nasi: '🍚',
+      keju: '🧀', kentang: '🥔', bayam: '🥬', mentega: '🧈', jeruk: '🍋',
     };
 
     function getEmoji(name) {
-      const key = name.toLowerCase().trim();
+      const key = (name || '').toLowerCase().trim();
       for (const [k, v] of Object.entries(emojiMap)) { if (key.includes(k)) return v; }
       return '🥬';
     }
 
+    // ─── CHIPS ───
     function renderChips() {
       const area = document.getElementById('chipsArea');
       if (ingredients.length === 0) {
-        area.innerHTML = '<span style="font-size:13px;color:var(--text-light);padding:8px 0">No ingredients yet — add some above!</span>';
+        area.innerHTML = `<span style="font-size:13px;color:var(--light);padding:8px 0">${t('noIngredientsYet')}</span>`;
         return;
       }
       area.innerHTML = ingredients.map((ing, i) => `
-    <span class="chip">${getEmoji(ing)} ${ing}
-      <button class="chip-remove" onclick="removeIngredient(${i})" aria-label="Remove ${ing}">×</button>
-    </span>`).join('');
+        <span class="chip">${getEmoji(ing)} ${ing}
+          <button class="chip-remove" onclick="removeIngredient(${i})" aria-label="Remove ${ing}">×</button>
+        </span>`).join('');
     }
 
     function addIngredient() {
@@ -1079,8 +1644,7 @@
         ingredients.push(val.charAt(0).toUpperCase() + val.slice(1));
         renderChips();
       }
-      input.value = '';
-      input.focus();
+      input.value = ''; input.focus();
     }
 
     function removeIngredient(i) { ingredients.splice(i, 1); renderChips(); }
@@ -1102,13 +1666,19 @@
       }
     }
 
+    function updateCount(val) {
+      recipeCount = parseInt(val);
+      document.getElementById('recipeCountBadge').textContent = val;
+    }
+
     document.getElementById('ingredientInput').addEventListener('keydown', e => { if (e.key === 'Enter') addIngredient(); });
     document.getElementById('addBtn').addEventListener('click', addIngredient);
     renderChips();
 
+    // ─── GENERATE ───
     async function generateRecipes() {
       if (ingredients.length < 2) {
-        document.getElementById('resultsArea').innerHTML = `<div class="error-box">⚠️ Please add at least 2 ingredients to get recipe suggestions.</div>`;
+        document.getElementById('resultsArea').innerHTML = `<div class="error-box">${t('noIngredients')}</div>`;
         return;
       }
       const btn = document.getElementById('generateBtn');
@@ -1116,13 +1686,13 @@
       const text = document.getElementById('btnText');
       btn.disabled = true;
       icon.className = 'spinner'; icon.textContent = '';
-      text.textContent = 'Crafting your personalized recipes...';
+      text.textContent = t('generating');
       document.getElementById('resultsArea').innerHTML = '';
 
       const prefStr = preferences.length ? `\nMeal preferences: ${preferences.join(', ')}.` : '';
       const prompt = `You are a professional chef and nutritionist. A user has these ingredients available: ${ingredients.join(', ')}.${prefStr}
 
-Create exactly 3 creative, delicious recipe suggestions. For each recipe, respond in valid JSON only (no markdown, no extra text) with this exact structure:
+Create exactly ${recipeCount} creative, delicious recipe suggestions. Respond in ${t('promptLang')}. For each recipe, respond in valid JSON only (no markdown, no extra text) with this exact structure:
 {
   "recipes": [
     {
@@ -1142,7 +1712,7 @@ Create exactly 3 creative, delicious recipe suggestions. For each recipe, respon
   ]
 }
 
-Mark ingredients as "have: true" ONLY if they appear in the user's ingredient list. Include 2-3 pantry staple ingredients marked as "have: false". Keep steps concise (1-2 sentences each), aim for 4-5 steps. Make recipes varied in cuisine style.`;
+Mark ingredients as "have: true" ONLY if they appear in the user's ingredient list. Include 2-3 pantry staple ingredients marked as "have: false". Keep steps concise (1-2 sentences each), aim for 4-5 steps. Make recipes varied in cuisine style. Translate all text (title, description, steps, tip) into ${t('promptLang')}.`;
 
       try {
         const res = await fetch('/api/generate', {
@@ -1170,52 +1740,55 @@ Mark ingredients as "have: true" ONLY if they appear in the user's ingredient li
     function renderRecipes(recipes) {
       const area = document.getElementById('resultsArea');
       if (!recipes || recipes.length === 0) {
-        area.innerHTML = '<div class="error-box">No recipes found. Try adding more ingredients.</div>';
+        area.innerHTML = `<div class="error-box">${t('noRecipes')}</div>`;
         return;
       }
       area.innerHTML = `
-    <div class="results-header">
-      <h2>Your Personalized Recipes</h2>
-      <span class="recipe-count">${recipes.length} recipes found</span>
-    </div>
-    <div class="recipe-grid">
-      ${recipes.map((r, i) => renderRecipeCard(r, i + 1)).join('')}
-    </div>`;
+        <div class="results-header">
+          <h2>${t('resultsTitle')}</h2>
+          <span class="recipe-count">${recipes.length} ${t('recipesFound')}</span>
+        </div>
+        <div class="recipe-grid">
+          ${recipes.map((r, i) => renderRecipeCard(r, i + 1)).join('')}
+        </div>`;
       area.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function renderRecipeCard(r, num) {
-      const ings = (r.ingredients || []).map(i => `<li class="${i.have ? 'have' : ''}">${i.have ? '✓ ' : ' '}${i.name}</li>`).join('');
+      const ings = (r.ingredients || []).map(i =>
+        `<li class="${i.have ? 'have' : ''}">${i.have ? '✓ ' : ''}${i.name}</li>`
+      ).join('');
       const steps = (r.steps || []).map(s => `<li>${s}</li>`).join('');
       return `
-  <div class="recipe-item">
-    <div class="recipe-header">
-      <div class="recipe-number">${num}</div>
-      <div class="recipe-title-block">
-        <h3>${r.title}</h3>
-        <div class="recipe-tags">
-          <span class="tag tag-time">⏱ ${r.time || '—'}</span>
-          <span class="tag tag-diff">◆ ${r.difficulty || 'Medium'}</span>
-          <span class="tag tag-cals">🔥 ${r.calories || '—'}</span>
-          <span class="tag tag-match">✅ ${r.matchCount || '—'} match</span>
-        </div>
-      </div>
-    </div>
-    <div class="recipe-body">
-      <p class="recipe-desc">${r.description}</p>
-      <div class="recipe-sections">
-        <div>
-          <p class="section-title">Ingredients</p>
-          <ul class="ing-list">${ings}</ul>
-        </div>
-        <div>
-          <p class="section-title">Instructions</p>
-          <ol class="steps-list">${steps}</ol>
-        </div>
-      </div>
-      ${r.tip ? `<div class="tip-box"><strong>Chef's Tip:</strong> ${r.tip}</div>` : ''}
-    </div>
-  </div>`;
+        <div class="recipe-item" style="animation-delay:${(num - 1) * 0.08}s">
+          <div class="recipe-accent-bar"></div>
+          <div class="recipe-header">
+            <div class="recipe-number">${num}</div>
+            <div class="recipe-title-block">
+              <h3>${r.title}</h3>
+              <div class="recipe-tags">
+                <span class="tag tag-time">⏱ ${r.time || '—'}</span>
+                <span class="tag tag-diff">◆ ${r.difficulty || 'Medium'}</span>
+                <span class="tag tag-cals">🔥 ${r.calories || '—'}</span>
+                <span class="tag tag-match">✅ ${r.matchCount || '—'} match</span>
+              </div>
+            </div>
+          </div>
+          <div class="recipe-body">
+            <p class="recipe-desc">${r.description}</p>
+            <div class="recipe-sections">
+              <div>
+                <p class="section-title">Ingredients</p>
+                <ul class="ing-list">${ings}</ul>
+              </div>
+              <div>
+                <p class="section-title">Instructions</p>
+                <ol class="steps-list">${steps}</ol>
+              </div>
+            </div>
+            ${r.tip ? `<div class="tip-box"><strong>${t('chefTip')}:</strong> ${r.tip}</div>` : ''}
+          </div>
+        </div>`;
     }
   </script>
 </body>
